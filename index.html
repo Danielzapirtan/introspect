@@ -1,703 +1,1068 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cabinet Psihoterapie</title>
+    <title>Generator Website Psihoterapeut - GitHub Pages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Stiluri de bază */
         :root {
-            --primary: #4a7c59;
-            --secondary: #8d9f87;
-            --accent: #c5d5cb;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --text: #2d3a3a;
+            --primary: #4a6fa5;
+            --primary-dark: #385d8a;
+            --secondary: #e8e9eb;
+            --accent: #d4a574;
+            --text: #333;
+            --light: #f9f9f9;
+            --border: #ddd;
+            --success: #28a745;
+            --error: #dc3545;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            background-color: #f5f7fa;
             color: var(--text);
-            background-color: var(--light);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
         
-        /* Tipografie */
-        h1, h2, h3, h4 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-        
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        /* Antet */
         header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-menu a {
-            font-weight: 500;
-        }
-        
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Secțiunea Hero */
-        .hero {
-            padding: 8rem 0 4rem;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
-            color: white;
             text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #3a6355;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        /* Secțiuni */
-        section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        /* Despre */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-image {
-            flex: 1;
-            height: 400px;
-            background-color: var(--accent);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* Servicii */
-        .services {
-            background-color: var(--accent);
+        header h1 {
+            margin-bottom: 10px;
+            font-size: 2.2rem;
         }
         
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .service-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        /* Abordare */
-        .approach-content {
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
             max-width: 800px;
             margin: 0 auto;
         }
         
-        /* Testimoniale */
-        .testimonials {
-            background-color: var(--light);
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
         }
         
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .testimonial-card {
+        .form-section {
+            flex: 1;
+            min-width: 300px;
             background-color: white;
-            padding: 2rem;
             border-radius: 10px;
+            padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1.5rem;
+        .preview-section {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
         }
         
-        .testimonial-author {
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
             color: var(--primary);
         }
         
-        /* Contact */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .checkbox-item input {
+            width: auto;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            justify-content: center;
+            min-width: 200px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--text);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d8d9db;
+            transform: translateY(-3px);
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+        
+        .preview-container {
+            flex: 1;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #fdfdfd;
+            margin-bottom: 20px;
+        }
+        
+        .preview-placeholder {
+            text-align: center;
+            color: #888;
+            padding: 40px 20px;
+        }
+        
+        .preview-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--border);
+        }
+        
+        .instructions {
+            background-color: #e8f4ff;
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        .instructions h3 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .instructions code {
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .required::after {
+            content: " *";
+            color: var(--error);
+        }
+        
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: var(--error);
+        }
+        
+        .form-group.error .error-message {
+            display: block;
+        }
+        
+        /* Preview website styling */
+        .preview-website {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .preview-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .preview-nav {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .preview-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .preview-content {
+            padding: 30px 20px;
+        }
+        
+        .preview-section-title {
+            color: var(--primary-dark);
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--secondary);
+        }
+        
+        .preview-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .service-card {
+            flex: 1;
+            min-width: 200px;
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .preview-contact {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
         }
         
         .contact-info {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
         }
         
         .contact-item {
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .contact-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .contact-form {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Întrebări Frecvente */
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 1.5rem;
-        }
-        
-        .faq-question {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 10px;
         }
         
-        .faq-answer {
-            color: #666;
-        }
-        
-        /* Subsol */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-        }
-        
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .copyright {
+        .preview-footer {
             text-align: center;
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ccc;
+            padding: 20px;
+            background-color: var(--secondary);
+            color: var(--text);
+            border-radius: 0 0 8px 8px;
+            margin-top: 30px;
         }
         
-        /* Responsiv */
         @media (max-width: 768px) {
-            .header-container {
-                padding: 1rem;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                flex-direction: column;
-                background-color: white;
-                width: 100%;
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-                padding: 2rem;
-                transition: 0.4s;
-            }
-            
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu li {
-                margin: 1.5rem 0;
-            }
-            
-            .menu-toggle {
-                display: block;
-            }
-            
-            .about-content {
+            .app-container {
                 flex-direction: column;
             }
             
-            .about-image {
-                width: 100%;
-            }
-            
-            .hero {
-                padding: 6rem 0 3rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
+            .btn {
+                min-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Antet -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Cabinet Psihoterapie</a>
-            <div class="menu-toggle" id="menuToggle">☰</div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#about">Despre Mine</a></li>
-                <li><a href="#services">Servicii</a></li>
-                <li><a href="#approach">Abordarea Mea</a></li>
-                <li><a href="#testimonials">Testimoniale</a></li>
-                <li><a href="#faq">Întrebări Frecvente</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Secțiunea Hero -->
-    <section class="hero">
-        <div class="container">
-            <h1>Călătoria Ta Spre Bunăstare Începe Aici</h1>
-            <p>Servicii profesionale de terapie adaptate nevoilor tale specifice, într-un mediu sigur și compasiune.</p>
-            <a href="#contact" class="btn">Programează o Consultație</a>
-        </div>
-    </section>
-
-    <!-- Secțiunea Despre -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Despre Mine</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Bună, sunt Dr. Corneliu Boboc, psiholog clinic autorizat cu peste 10 ani de experiență în ajutarea persoanelor să navigheze prin provocările vieții și să obțină wellness mental.</p>
-                    <p>Am absolvit Universitatea Carol Davila și mi-am dedicat cariera oferirii de terapii bazate pe dovezi științifice care îi împuternicesc pe clienții mei să facă schimbări pozitive în viețile lor.</p>
-                    <p>Practica mea este construită pe principiile empatiei, respectului și confidențialității. Cred că fiecare persoană are capacitatea de dezvoltare și vindecare, și mă angajez să creez un spațiu sigur în care această transformare poate avea loc.</p>
-                </div>
-                <div class="about-image">
-                    [Loc pentru Fotografie Terapeut]
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secțiunea Servicii -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Serviciile Mele</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">💬</div>
-                    <h3>Terapie Individuală</h3>
-                    <p>Ședințe one-on-one concentrate pe nevoile, provocările și obiectivele tale specifice, într-un cadru confidențial.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👥</div>
-                    <h3>Consiliere de Cuplu</h3>
-                    <p>Întărește-ți relația prin îmbunătățirea comunicării, rezolvarea conflictelor și reconectarea emoțională.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🧠</div>
-                    <h3>Tratament Anxietate</h3>
-                    <p>Abordări bazate pe dovezi științifice pentru a gestiona anxietatea, reduce îngrijorarea și recâștiga controlul asupra vieții tale.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">😔</div>
-                    <h3>Terapie Depresie</h3>
-                    <p>Suport compasiune și strategii eficiente pentru a depăși depresia și redescoperi bucuria.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secțiunea Abordare -->
-    <section id="approach">
-        <div class="container">
-            <div class="section-title">
-                <h2>Abordarea Mea Terapeutică</h2>
-            </div>
-            <div class="approach-content">
-                <p>Folosesc o abordare integrativă, inspirându-mă din mai multe modalități bazate pe dovezi științifice pentru a adapta tratamentul la nevoile tale unice:</p>
-                <ul>
-                    <li><strong>Terapia Cognitiv-Comportamentală (TCC):</strong> Identificarea și modificarea patternurilor de gândire și comportamentale inutile</li>
-                    <li><strong>Terapii Bazate pe Conștientizare Plină de Atenție (Mindfulness):</strong> Dezvoltarea conștientizării momentului prezent pentru a reduce stresul și îmbunătăți starea de bine</li>
-                    <li><strong>Terapia de Acceptare și Angajament (ACT):</strong> Cultivarea flexibilității psihologice și a vieții bazate pe valori</li>
-                    <li><strong>Terapia Concentrată pe Soluții:</strong> Construirea pe punctele tale forte și resurse pentru a crea soluții practice</li>
-                </ul>
-                <p>Indiferent de tehnicile folosite, relația noastră terapeutică va fi întotdeauna construită pe încredere, empatie și colaborare. Tu ești expertul în propria ta viață, iar rolul meu este să ofer îndrumare, suport și strategii bazate pe dovezi științifice pentru a te ajuta să îți atingi obiectivele.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secțiunea Testimoniale -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Testimoniale ale Clienților</h2>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Lucrul cu Dr. Boboc a fost o experiență care mi-a schimbat viața. Abordarea lui plină de compasiune m-a ajutat să dezvolt instrumente pentru a-mi gestiona anxietatea pe care le voi folosi tot restul vieții."</p>
-                    <p class="testimonial-author">- Ana M.</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"După ce am încercat mai mulți terapeuți, am găsit în sfârșit pe cineva care mă ascultă cu adevărat și mă înțelege. Ședințele noastre m-au ajutat să navighez prin cea mai provocatoare perioadă a vieții mele."</p>
-                    <p class="testimonial-author">- Andrei T.</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Consilierea de cuplu pe care am primit-o ne-a transformat relația. Am învățat să comunicăm eficient și să ne reconectăm emoțional. Vă mulțumim!"</p>
-                    <p class="testimonial-author">- Maria & Ionuț R.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secțiunea Întrebări Frecvente -->
-    <section id="faq">
-        <div class="container">
-            <div class="section-title">
-                <h2>Întrebări Frecvente</h2>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">Cât durează o ședință de terapie? <span>+</span></div>
-                    <div class="faq-answer">Ședințele standard durează 50 de minute. Ședințe extinse (80 de minute) sunt disponibile pentru consiliere de cuplu sau lucru intensiv atunci când este necesar.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Cât de des ne vom întâlni? <span>+</span></div>
-                    <div class="faq-answer">Majoritatea clienților încep cu ședințe săptămânale pentru a crea un impuls. Pe măsură ce se fac progrese, putem trece la ședințe bi-săptămânale sau lunare.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Acceptați asigurări de sănătate? <span>+</span></div>
-                    <div class="faq-answer">Sunt furnizor out-of-network. Vă pot oferi documentația necesară pentru a o prezenta companiei de asigurări pentru posibilă rambursare.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Care este politica de anulare? <span>+</span></div>
-                    <div class="faq-answer">Este necesar să anunțați cu 24 de ore înainte pentru anulări. Programările anulate cu mai puțin de 24 de ore înainte vor fi taxate cu costul întregii ședințe.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Cum știu dacă terapia funcționează? <span>+</span></div>
-                    <div class="faq-answer">Vom verifica în mod regulat progresul față de obiectivele pe care le stabilim împreună. Mulți clienți raportează că se simt mai bine în primele câteva ședințe.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secțiunea Contact -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Ia Legătura</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>paschanuc@gmail.com</p>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heart"></i> Generator Website Psihoterapeut</h1>
+            <p>Completează formularul pentru a genera un website personal pe care îl poți publica pe GitHub Pages</p>
+        </header>
+        
+        <div class="app-container">
+            <section class="form-section">
+                <h2 class="section-title">Informații Psihoterapeut</h2>
+                
+                <form id="therapistForm">
+                    <div class="form-group">
+                        <label for="name" class="required">Nume complet</label>
+                        <input type="text" id="name" placeholder="Ex: Dr. Ana Popescu">
+                        <div class="error-message">Te rog introdu numele tău complet.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specialization" class="required">Specializare / Orientare terapeutică</label>
+                        <input type="text" id="specialization" placeholder="Ex: Psihoterapeut cognitiv-comportamental">
+                        <div class="error-message">Te rog introdu specializarea ta.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description" class="required">Descriere profesională</label>
+                        <textarea id="description" placeholder="Descrie experiența ta profesională, abordarea terapeutică și câteva cuvinte despre tine..."></textarea>
+                        <div class="error-message">Te rog adaugă o descriere profesională.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="services" class="required">Servicii oferite</label>
+                        <textarea id="services" placeholder="Listează serviciile oferite, câte unul pe linie..."></textarea>
+                        <div class="error-message">Te rog adaugă cel puțin un serviciu oferit.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact" class="required">Informații de contact</label>
+                        <textarea id="contact" placeholder="Email: ana.popescu@example.com&#10;Telefon: +40 721 123 456&#10;Adresă: Strada Exemplu nr. 10, București"></textarea>
+                        <div class="error-message">Te rog adaugă informații de contact.</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="languages">Limbi vorbite</label>
+                        <input type="text" id="languages" placeholder="Ex: Română, Engleză, Franceză">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Abordări terapeutice</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach1" value="Cognitiv-comportamentală">
+                                <label for="approach1">Cognitiv-comportamentală</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach2" value="Psihanalitică">
+                                <label for="approach2">Psihanalitică</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach3" value="Gestalt">
+                                <label for="approach3">Gestalt</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach4" value="Sistemico-familială">
+                                <label for="approach4">Sistemico-familială</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach5" value="Umanistă">
+                                <label for="approach5">Umanistă</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="approach6" value="Altele">
+                                <label for="approach6">Altele</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <h4>Telefon</h4>
-                            <p>(555) 123-4567</p>
-                        </div>
+                    
+                    <div class="form-group">
+                        <label for="photo">URL fotografie (opțional)</label>
+                        <input type="text" id="photo" placeholder="https://exemplu.ro/fotografie.jpg">
+                        <small>Poți încărca fotografia pe un serviciu de hosting (ex: Imgur) și apoi adăuga link-ul aici.</small>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h4>Locație Cabinet</h4>
-                            <p>123 Wellness Avenue, Suite 456<br>San Francisco, CA 94110</p>
-                        </div>
+                </form>
+                
+                <div class="buttons">
+                    <button type="button" class="btn btn-primary" id="previewBtn">
+                        <i class="fas fa-eye"></i> Previzualizează website
+                    </button>
+                    <button type="button" class="btn btn-success" id="generateBtn">
+                        <i class="fas fa-download"></i> Generează website
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="resetBtn">
+                        <i class="fas fa-redo"></i> Resetează formular
+                    </button>
+                </div>
+            </section>
+            
+            <section class="preview-section">
+                <h2 class="section-title">Previzualizare website</h2>
+                
+                <div class="preview-container" id="previewContainer">
+                    <div class="preview-placeholder">
+                        <i class="fas fa-laptop-code"></i>
+                        <p>Completează formularul și apasă "Previzualizează website" pentru a vedea cum va arăta site-ul tău.</p>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div>
-                            <h4>Program Cabinet</h4>
-                            <p>Luni - Vineri: 9:00 - 18:00<br>Sâmbătă: 10:00 - 14:00 (cu programare prealabilă)</p>
-                        </div>
+                    
+                    <div class="preview-website" id="previewWebsite" style="display: none;">
+                        <!-- Preview will be inserted here by JavaScript -->
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Trimite un Mesaj</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Numele Tău</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Adresă de Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Număr de Telefon</label>
-                            <input type="tel" id="phone" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mesajul Tău</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Trimite Mesaj</button>
-                    </form>
+                
+                <div class="instructions">
+                    <h3><i class="fas fa-info-circle"></i> Instrucțiuni pentru publicare pe GitHub Pages</h3>
+                    <ol>
+                        <li>Completează toate câmpurile obligatorii din formular</li>
+                        <li>Apasă "Generează website" pentru a descărca fișierul <code>index.html</code></li>
+                        <li>Încarcă fișierul în repository-ul tău GitHub (crează unul nou dacă nu ai)</li>
+                        <li>Activează GitHub Pages din setările repository-ului (Settings → Pages)</li>
+                        <li>Alege branch-ul principal (main/master) și salvează setările</li>
+                        <li>Website-ul tău va fi disponibil la adresa: <code>https://[username].github.io/[repository]</code></li>
+                    </ol>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-
-    <!-- Subsol -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-about">
-                    <div class="footer-logo">Cabinet Psihoterapie</div>
-                    <p>Servicii profesionale de terapie pentru persoane și cupluri care caută schimbare pozitivă și wellness emoțional.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Link-uri Rapide</h4>
-                    <ul>
-                        <li><a href="#about">Despre Mine</a></li>
-                        <li><a href="#services">Servicii</a></li>
-                        <li><a href="#approach">Abordarea Mea</a></li>
-                        <li><a href="#testimonials">Testimoniale</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Politica de Confidențialitate</a></li>
-                        <li><a href="#">Termeni și Condiții</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!--
-            <div class="copyright">
-                <p>&copy; 2023 Mindful Healing Therapy. Toate drepturile rezervate.</p>
-            </div>
-            -->
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Meniu mobil
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('therapistForm');
+            const previewBtn = document.getElementById('previewBtn');
+            const generateBtn = document.getElementById('generateBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const previewContainer = document.getElementById('previewContainer');
+            const previewWebsite = document.getElementById('previewWebsite');
+            const previewPlaceholder = document.querySelector('.preview-placeholder');
+            
+            // Load sample data for testing
+            loadSampleData();
+            
+            // Preview button event
+            previewBtn.addEventListener('click', function() {
+                if (validateForm()) {
+                    generatePreview();
+                }
+            });
+            
+            // Generate button event
+            generateBtn.addEventListener('click', function() {
+                if (validateForm()) {
+                    generateWebsiteFile();
+                }
+            });
+            
+            // Reset button event
+            resetBtn.addEventListener('click', function() {
+                if (confirm('Sigur dorești să resetezi formularul? Toate datele introduse se vor pierde.')) {
+                    form.reset();
+                    previewWebsite.style.display = 'none';
+                    previewPlaceholder.style.display = 'block';
+                }
+            });
+            
+            // Form validation
+            function validateForm() {
+                let isValid = true;
+                const requiredFields = ['name', 'specialization', 'description', 'services', 'contact'];
+                
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    const formGroup = field.closest('.form-group');
+                    const errorMessage = formGroup.querySelector('.error-message');
+                    
+                    if (!field.value.trim()) {
+                        formGroup.classList.add('error');
+                        errorMessage.style.display = 'block';
+                        isValid = false;
+                    } else {
+                        formGroup.classList.remove('error');
+                        errorMessage.style.display = 'none';
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            // Generate preview
+            function generatePreview() {
+                const formData = getFormData();
+                
+                // Build the preview HTML
+                let previewHTML = `
+                    <div class="preview-header">
+                        <h1>${formData.name}</h1>
+                        <p>${formData.specialization}</p>
+                    </div>
+                    
+                    <div class="preview-nav">
+                        <a href="#despre">Despre mine</a>
+                        <a href="#servicii">Servicii</a>
+                        <a href="#abordari">Abordări terapeutice</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    
+                    <div class="preview-content">
+                        <section id="despre">
+                            <h2 class="preview-section-title">Despre mine</h2>
+                            <p>${formData.description.replace(/\n/g, '<br>')}</p>
+                            ${formData.languages ? `<p><strong>Limbi vorbite:</strong> ${formData.languages}</p>` : ''}
+                        </section>
+                        
+                        <section id="servicii">
+                            <h2 class="preview-section-title">Servicii oferite</h2>
+                            <div class="preview-services">
+                                ${formData.services.split('\n').map(service => `
+                                    <div class="service-card">
+                                        <h3><i class="fas fa-comments" style="color: var(--accent);"></i> ${service.trim()}</h3>
+                                        <p>Consiliere și psihoterapeutică individuală pentru problemele specifice aferente.</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </section>
+                        
+                        <section id="abordari">
+                            <h2 class="preview-section-title">Abordări terapeutice</h2>
+                            <p>${formData.approaches.length > 0 ? 
+                                `În practica mea terapeutică utilizez următoarele abordări: ${formData.approaches.join(', ')}.` : 
+                                'Abordarea terapeutică este adaptată nevoilor specifice ale fiecărui client.'}
+                            </p>
+                        </section>
+                        
+                        <section id="contact">
+                            <h2 class="preview-section-title">Programări și contact</h2>
+                            <div class="preview-contact">
+                                <p>Pentru programări sau informații suplimentare, vă rugăm să mă contactați:</p>
+                                <div class="contact-info">
+                                    ${formData.contact.split('\n').map(contactLine => `
+                                        <div class="contact-item">
+                                            <i class="fas fa-envelope" style="color: var(--primary);"></i>
+                                            <span>${contactLine.trim()}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <p style="margin-top: 20px; font-style: italic;">Prima consultație de evaluare durează aproximativ 50 de minute.</p>
+                            </div>
+                        </section>
+                    </div>
+                    
+                    <div class="preview-footer">
+                        <p>© ${new Date().getFullYear()} ${formData.name}. Toate drepturile rezervate.</p>
+                        <p>Website generat cu Generator Website Psihoterapeut</p>
+                    </div>
+                `;
+                
+                // Show the preview
+                previewWebsite.innerHTML = previewHTML;
+                previewWebsite.style.display = 'block';
+                previewPlaceholder.style.display = 'none';
+                
+                // Scroll to preview
+                previewContainer.scrollTop = 0;
+            }
+            
+            // Get form data
+            function getFormData() {
+                const approaches = [];
+                document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                    approaches.push(checkbox.value);
+                });
+                
+                return {
+                    name: document.getElementById('name').value,
+                    specialization: document.getElementById('specialization').value,
+                    description: document.getElementById('description').value,
+                    services: document.getElementById('services').value,
+                    contact: document.getElementById('contact').value,
+                    languages: document.getElementById('languages').value,
+                    photo: document.getElementById('photo').value,
+                    approaches: approaches
+                };
+            }
+            
+            // Generate the final website file
+            function generateWebsiteFile() {
+                const formData = getFormData();
+                
+                // Build the complete HTML for the website
+                const websiteHTML = `<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${formData.name} - Psihoterapeut</title>
+    <meta name="description" content="Psihoterapeut specializat în ${formData.specialization}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --primary-dark: #385d8a;
+            --secondary: #e8e9eb;
+            --accent: #d4a574;
+            --text: #333;
+            --light: #f9f9f9;
+            --border: #ddd;
+        }
         
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        // Închide meniul la click pe un link
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
+        body {
+            background-color: #f5f7fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        section {
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .photo-container {
+            flex: 0 0 300px;
+            text-align: center;
+        }
+        
+        .profile-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+        
+        .contact-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.3rem;
+            width: 30px;
+        }
+        
+        .languages {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: 8px;
+        }
+        
+        .approach-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .approach-badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: var(--text);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .photo-container {
+                order: -1;
+            }
+            
+            .profile-photo {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>${formData.name}</h1>
+            <p>${formData.specialization}</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <a href="#despre">Despre mine</a>
+            <a href="#servicii">Servicii</a>
+            <a href="#abordari">Abordări terapeutice</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="despre">
+            <h2 class="section-title">Despre mine</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>${formData.description.replace(/\n/g, '<br>')}</p>
+                    ${formData.languages ? `
+                    <div class="languages">
+                        <p><strong>Limbi vorbite:</strong> ${formData.languages}</p>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="photo-container">
+                    ${formData.photo ? `
+                    <img src="${formData.photo}" alt="${formData.name}" class="profile-photo">
+                    ` : `
+                    <div style="width: 250px; height: 250px; border-radius: 50%; background-color: var(--secondary); display: flex; align-items: center; justify-content: center; margin: 0 auto; border: 5px solid white;">
+                        <i class="fas fa-user-md" style="font-size: 5rem; color: var(--primary);"></i>
+                    </div>
+                    `}
+                </div>
+            </div>
+        </section>
+        
+        <section id="servicii">
+            <h2 class="section-title">Servicii oferite</h2>
+            <div class="services-grid">
+                ${formData.services.split('\n').map(service => `
+                <div class="service-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>${service.trim()}</h3>
+                    <p>Consiliere și psihoterapie individuală adaptată nevoilor specifice. Sesiunile au loc într-un cadru confidențial și non-judgmental.</p>
+                </div>
+                `).join('')}
+            </div>
+        </section>
+        
+        <section id="abordari">
+            <h2 class="section-title">Abordări terapeutice</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+                ${formData.approaches.length > 0 ? 
+                    `În practica mea terapeutică, utilizez o combinație de abordări științifice, adaptate nevoilor individuale ale fiecărui client. Principalele orientări pe care mă bazez sunt:` : 
+                    'Abordarea terapeutică este adaptată nevoilor specifice ale fiecărui client, într-un cadru empatic și non-judgmental.'}
+            </p>
+            ${formData.approaches.length > 0 ? `
+            <div class="approach-list">
+                ${formData.approaches.map(approach => `
+                <div class="approach-badge">${approach}</div>
+                `).join('')}
+            </div>
+            ` : ''}
+        </section>
+        
+        <section id="contact">
+            <h2 class="section-title">Contact și programări</h2>
+            <div class="contact-container">
+                <p style="text-align: center; margin-bottom: 30px;">Pentru programări sau informații suplimentare, vă rugăm să mă contactați prin unul din canalele de mai jos:</p>
+                
+                <div class="contact-info">
+                    ${formData.contact.split('\n').map(contactLine => `
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>${contactLine.trim()}</span>
+                    </div>
+                    `).join('')}
+                </div>
+                
+                <p style="margin-top: 30px; padding: 20px; background-color: var(--light); border-radius: 8px; text-align: center;">
+                    <strong>Prima consultație de evaluare</strong> durează aproximativ 50 de minute și reprezintă o oportunitate de a ne cunoaște și de a discuta despre preocupările care v-au adus în cabinet.
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>© ${new Date().getFullYear()} ${formData.name}. Toate drepturile rezervate.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Psihoterapeut autorizat | Member of Romanian College of Psychologists</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
             });
         });
         
-        // Acordeon pentru Întrebări Frecvente
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isOpen = answer.style.display === 'block';
-                
-                // Închide toate răspunsurile
-                document.querySelectorAll('.faq-answer').forEach(ans => {
-                    ans.style.display = 'none';
-                });
-                
-                document.querySelectorAll('.faq-question span').forEach(span => {
-                    span.textContent = '+';
-                });
-                
-                // Deschide răspunsul dacă era închis
-                if (!isOpen) {
-                    answer.style.display = 'block';
-                    question.querySelector('span').textContent = '-';
+        // Add active class to current section in navigation
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
                 }
             });
         });
-        
-        // Trimitere formular
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Vă mulțumim pentru mesaj. Vă vom contacta în curând.');
-                this.reset();
-            });
-        }
+    </script>
+</body>
+</html>`;
+                
+                // Create a blob and download link
+                const blob = new Blob([websiteHTML], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'index.html';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                // Show success message
+                alert('Fișierul index.html a fost generat cu succes! Acum îl poți încărca pe GitHub pentru a publica website-ul.');
+            }
+            
+            // Load sample data for testing
+            function loadSampleData() {
+                document.getElementById('name').value = 'Dr. Ana Popescu';
+                document.getElementById('specialization').value = 'Psihoterapeut cognitiv-comportamental';
+                document.getElementById('description').value = 'Sunt psihoterapeut autorizat cu peste 10 ani de experiență în domeniul sănătății mintale. Îmi dedic practica ajutării oamenilor să depășească obstacolele emoționale și să își atingă potențialul maxim. Cred într-o abordare holistică a terapiei, integrativă, adaptată nevoilor unice ale fiecărui client.';
+                document.getElementById('services').value = 'Consiliere psihologică individuală\nPsihoterapie pentru anxietate și depresie\nConsiliere pentru relații și familie\nTerapie pentru managementul stresului\nConsiliere pentru dezvoltare personală';
+                document.getElementById('contact').value = 'Email: ana.popescu@example.com\nTelefon: +40 721 123 456\nAdresă: Strada Exemplu nr. 10, București';
+                document.getElementById('languages').value = 'Română, Engleză, Franceză';
+                document.getElementById('photo').value = 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80';
+                
+                // Check some checkboxes
+                document.getElementById('approach1').checked = true;
+                document.getElementById('approach5').checked = true;
+            }
+        });
     </script>
 </body>
 </html>
