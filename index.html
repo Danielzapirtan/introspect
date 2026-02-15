@@ -3,238 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generator site pentru psihoterapeut</title>
+<title>Generator site – Cabinet Psihoterapie</title>
 <style>
-    body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: linear-gradient(135deg, #e9f0f7, #f7f9fb);
-        margin: 0;
-        padding: 20px;
+    body{
+        font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+        background:#f8f9fa;
+        margin:0;
+        padding:30px;
+        color:#2d3a3a;
     }
-    h1 {
-        text-align: center;
-        color: #1f2d3d;
-        margin-bottom: 30px;
+    h1{text-align:center;color:#4a7c59;margin-bottom:30px}
+    form{
+        max-width:800px;
+        margin:0 auto;
+        background:#fff;
+        padding:30px;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(0,0,0,.08)
     }
-    form {
-        max-width: 700px;
-        margin: 0 auto;
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    label{display:block;margin-top:18px;font-weight:600}
+    input,textarea{
+        width:100%;
+        margin-top:6px;
+        padding:12px;
+        border-radius:8px;
+        border:1px solid #ddd;
+        font-size:15px
     }
-    label {
-        display: block;
-        margin-top: 18px;
-        font-weight: 600;
-        color: #34495e;
+    button{
+        margin-top:30px;
+        width:100%;
+        padding:14px;
+        border:none;
+        border-radius:30px;
+        background:#4a7c59;
+        color:#fff;
+        font-size:16px;
+        font-weight:600;
+        cursor:pointer
     }
-    input, textarea {
-        width: 100%;
-        padding: 12px;
-        margin-top: 6px;
-        border-radius: 8px;
-        border: 1px solid #dce3ea;
-        font-size: 15px;
-        box-sizing: border-box;
-        transition: border 0.2s, box-shadow 0.2s;
-    }
-    input:focus, textarea:focus {
-        outline: none;
-        border: 1px solid #2c7be5;
-        box-shadow: 0 0 0 3px rgba(44,123,229,0.15);
-    }
-    button {
-        margin-top: 25px;
-        width: 100%;
-        padding: 14px;
-        font-size: 16px;
-        font-weight: 600;
-        background: linear-gradient(90deg, #2c7be5, #1a68d1);
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: transform 0.1s ease, box-shadow 0.1s ease;
-    }
-    button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
+    button:hover{background:#3a6355}
 </style>
 </head>
 <body>
 
-<h1>Generator de site pentru psihoterapeut</h1>
+<h1>Generator site profesional – Cabinet Psihoterapie</h1>
 
-<form id="generatorForm">
-    <label for="nume">Nume complet</label>
-    <input type="text" id="nume" required>
+<form id="genForm">
+    <label>Nume terapeut</label>
+    <input id="name" required>
 
-    <label for="titlu">Titlu profesional</label>
-    <input type="text" id="titlu" placeholder="Psihoterapeut, Psiholog clinician" required>
+    <label>Titlu profesional</label>
+    <input id="title" placeholder="Psiholog / Psihoterapeut" required>
 
-    <label for="descriere">Descriere profesională</label>
-    <textarea id="descriere" rows="4" required></textarea>
+    <label>Text Hero</label>
+    <textarea id="hero" required></textarea>
 
-    <label for="specializari">Specializări</label>
-    <textarea id="specializari" rows="3" placeholder="Anxietate, depresie, terapie de cuplu"></textarea>
+    <label>Descriere „Despre mine”</label>
+    <textarea id="about" required></textarea>
 
-    <label for="email">Email de contact</label>
-    <input type="email" id="email" required>
+    <label>Servicii (câte unul pe linie)</label>
+    <textarea id="services"></textarea>
 
-    <label for="telefon">Telefon</label>
-    <input type="text" id="telefon">
+    <label>Email</label>
+    <input id="email" type="email" required>
 
-    <label for="cabinet">Adresă cabinet</label>
-    <input type="text" id="cabinet">
+    <label>Telefon</label>
+    <input id="phone">
 
-    <button type="submit">Descarcă site-ul (index.html)</button>
+    <label>Adresă cabinet</label>
+    <textarea id="address"></textarea>
+
+    <button type="submit">Descarcă index.html</button>
 </form>
 
 <script>
-function escapeHTML(str) {
-    return str.replace(/[&<>"']/g, function(tag) {
-        const chars = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        };
-        return chars[tag] || tag;
-    });
-}
+const esc=s=>s.replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m]));
 
-document.getElementById("generatorForm").addEventListener("submit", function(e) {
+document.getElementById("genForm").addEventListener("submit",e=>{
     e.preventDefault();
 
-    const nume = escapeHTML(document.getElementById("nume").value);
-    const titlu = escapeHTML(document.getElementById("titlu").value);
-    const descriere = escapeHTML(document.getElementById("descriere").value);
-    const specializari = escapeHTML(document.getElementById("specializari").value);
-    const email = escapeHTML(document.getElementById("email").value);
-    const telefon = escapeHTML(document.getElementById("telefon").value);
-    const cabinet = escapeHTML(document.getElementById("cabinet").value);
+    const name=esc(nameEl.value);
+    const title=esc(titleEl.value);
+    const hero=esc(heroEl.value);
+    const about=esc(aboutEl.value);
+    const email=esc(emailEl.value);
+    const phone=esc(phoneEl.value);
+    const address=esc(addressEl.value);
 
-    const siteHTML = `<!DOCTYPE html>
+    const servicesHTML=servicesEl.value
+        .split("\n").filter(l=>l.trim())
+        .map(s=>`<div class="service-card"><h3>${esc(s)}</h3></div>`).join("");
+
+    const html=`<!DOCTYPE html>
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${nume} – ${titlu}</title>
+<title>Cabinet Psihoterapie – ${name}</title>
 <style>
-    body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #f8fafc;
-        color: #2c3e50;
-        line-height: 1.6;
-    }
-    header {
-        background: linear-gradient(120deg, #2c7be5, #1a68d1);
-        color: #ffffff;
-        padding: 60px 20px;
-        text-align: center;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 36px;
-    }
-    header p {
-        margin-top: 10px;
-        font-size: 18px;
-        opacity: 0.95;
-    }
-    section {
-        max-width: 900px;
-        margin: 60px auto;
-        padding: 0 20px;
-    }
-    .card {
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        margin-bottom: 30px;
-    }
-    h2 {
-        margin-top: 0;
-        color: #1f2d3d;
-        border-left: 5px solid #2c7be5;
-        padding-left: 10px;
-    }
-    a {
-        color: #2c7be5;
-        text-decoration: none;
-        font-weight: 500;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-    footer {
-        background: #eef2f7;
-        text-align: center;
-        padding: 25px;
-        font-size: 14px;
-        color: #6c7a89;
-    }
-    @media (max-width: 600px) {
-        header h1 {
-            font-size: 28px;
-        }
-        section {
-            margin: 40px auto;
-        }
-    }
+${document.querySelector("style").textContent}
+header{position:fixed;top:0;width:100%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.hero{padding:8rem 1rem 4rem;background:linear-gradient(135deg,#c5d5cb,#8d9f87);color:#fff;text-align:center}
+section{padding:5rem 1rem}
+.services{background:#c5d5cb}
+.service-card{background:#fff;padding:2rem;border-radius:10px;margin-bottom:1.5rem}
+footer{background:#343a40;color:#fff;padding:3rem 1rem;text-align:center}
 </style>
 </head>
 <body>
 
 <header>
-    <h1>${nume}</h1>
-    <p>${titlu}</p>
+<div class="container">
+<strong>${name}</strong> – ${title}
+</div>
 </header>
 
-<section>
-    <div class="card">
-        <h2>Despre mine</h2>
-        <p>${descriere}</p>
-    </div>
+<section class="hero">
+<h1>${hero}</h1>
+<a href="#contact" class="btn">Programează o consultație</a>
+</section>
 
-    <div class="card">
-        <h2>Specializări</h2>
-        <p>${specializari || "Informații disponibile la cerere."}</p>
-    </div>
+<section id="about">
+<h2>Despre mine</h2>
+<p>${about}</p>
+</section>
 
-    <div class="card">
-        <h2>Contact</h2>
-        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        <p><strong>Telefon:</strong> ${telefon || "-"}</p>
-        <p><strong>Adresă cabinet:</strong> ${cabinet || "-"}</p>
-    </div>
+<section id="services" class="services">
+<h2>Servicii</h2>
+${servicesHTML}
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: ${email}</p>
+<p>Telefon: ${phone||"-"}</p>
+<p>${address||""}</p>
 </section>
 
 <footer>
-    &copy; ${new Date().getFullYear()} ${nume}. Toate drepturile rezervate.
+&copy; ${new Date().getFullYear()} ${name}
 </footer>
 
 </body>
 </html>`;
 
-    const blob = new Blob([siteHTML], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "index.html";
-    document.body.appendChild(a);
+    const blob=new Blob([html],{type:"text/html"});
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download="index.html";
     a.click();
-
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    URL.revokeObjectURL(a.href);
 });
+
+const nameEl=name;
+const titleEl=title;
+const heroEl=hero;
+const aboutEl=about;
+const servicesEl=services;
+const emailEl=email;
+const phoneEl=phone;
+const addressEl=address;
 </script>
 
 </body>
