@@ -1,98 +1,98 @@
 <!DOCTYPE html>
 <html lang="ro">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generator site – Cabinet Psihoterapie</title>
-<style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator site – Cabinet Psihoterapie</title>
+    <style>
 body{
-    font-family:'Segoe UI',Tahoma,Verdana,sans-serif;
-    background:#f8f9fa;
-    margin:0;
-    padding:30px;
-    color:#2d3a3a
+  font-family:'Segoe UI',Tahoma,Verdana,sans-serif;
+  background:#f8f9fa;
+  margin:0;
+  padding:30px;
+  color:#2d3a3a
 }
 h1{text-align:center;color:#4a7c59;margin-bottom:30px}
 form{
-    max-width:900px;
-    margin:0 auto;
-    background:#fff;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08)
+  max-width:900px;
+  margin:0 auto;
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08)
 }
 label{display:block;margin-top:18px;font-weight:600}
 input,textarea{
-    width:100%;
-    margin-top:6px;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #ddd;
-    font-size:15px
+  width:100%;
+  margin-top:6px;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:15px
 }
 button{
-    margin-top:30px;
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:30px;
-    background:#4a7c59;
-    color:#fff;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer
+  margin-top:30px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  background:#4a7c59;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer
 }
 button:hover{background:#3a6355}
-</style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
 
-<h1>Generator site profesional – Cabinet Psihoterapie</h1>
+    <h1>Generator site profesional – Cabinet Psihoterapie</h1>
 
-<form id="genForm">
-    <label>Nume cabinet / logo</label>
-    <input id="logo" required>
+    <form id="genForm">
+      <label>Nume cabinet / logo</label>
+      <input id="logo" required>
 
-    <label>Titlu Hero</label>
-    <input id="heroTitle" required>
+      <label>Titlu Hero</label>
+      <input id="heroTitle" required>
 
-    <label>Text Hero</label>
-    <textarea id="heroText" required></textarea>
+      <label>Text Hero</label>
+      <textarea id="heroText" required></textarea>
 
-    <label>Despre mine</label>
-    <textarea id="aboutText" required></textarea>
+      <label>Despre mine</label>
+      <textarea id="aboutText" required></textarea>
 
-    <label>Email</label>
-    <input id="email" type="email" required>
+      <label>Email</label>
+      <input id="email" type="email" required>
 
-    <label>Telefon</label>
-    <input id="phone" required>
+      <label>Telefon</label>
+      <input id="phone" required>
 
-    <label>Adresă cabinet</label>
-    <textarea id="address" required></textarea>
+      <label>Adresă cabinet</label>
+      <textarea id="address" required></textarea>
 
-    <button type="submit">Descarcă index.html</button>
-</form>
+      <button type="submit">Descarcă index.html</button>
+    </form>
 
-<script>
-function esc(s){
-    return s.replace(/[&<>"']/g,m=>({
-        "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
-    })[m]);
+    <script>
+      function esc(s){
+        return s.replace(/[&<>"']/g,m=>({
+          "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
+        })[m]);
 }
 
-document.getElementById("genForm").addEventListener("submit",e=>{
-    e.preventDefault();
+      document.getElementById("genForm").addEventListener("submit",e=>{
+        e.preventDefault();
 
-    const logo = esc(logoInput.value);
-    const heroTitle = esc(heroTitleInput.value);
-    const heroText = esc(heroTextInput.value);
-    const aboutText = esc(aboutTextInput.value);
-    const email = esc(emailInput.value);
-    const phone = esc(phoneInput.value);
-    const address = esc(addressInput.value);
+        const logo = esc(logoInput.value);
+        const heroTitle = esc(heroTitleInput.value);
+        const heroText = esc(heroTextInput.value);
+        const aboutText = esc(aboutTextInput.value);
+        const email = esc(emailInput.value);
+        const phone = esc(phoneInput.value);
+        const address = esc(addressInput.value);
 
-    const html = `<!DOCTYPE html>
+        const html = `<!DOCTYPE html>
 <html lang="ro">
 <head>
 <meta charset="UTF-8">
@@ -117,51 +117,51 @@ footer{background:var(--dark);color:#fff;padding:3rem 0;text-align:center}
 </head>
 <body>
 
-<header>
-<div class="container header-container">
-<div class="logo">${logo}</div>
-</div>
-</header>
+  <header>
+    <div class="container header-container">
+      <div class="logo">${logo}</div>
+    </div>
+  </header>
 
-<section class="hero">
-<div class="container">
-<h1>${heroTitle}</h1>
-<p>${heroText}</p>
-<a href="#contact" class="btn">Programează o Consultație</a>
-</div>
-</section>
+  <section class="hero">
+    <div class="container">
+      <h1>${heroTitle}</h1>
+      <p>${heroText}</p>
+      <a href="#contact" class="btn">Programează o Consultație</a>
+    </div>
+  </section>
 
-<section id="about">
-<div class="container">
-<h2>Despre Mine</h2>
-<p>${aboutText}</p>
-</div>
-</section>
+  <section id="about">
+    <div class="container">
+      <h2>Despre Mine</h2>
+      <p>${aboutText}</p>
+    </div>
+  </section>
 
-<section id="contact">
-<div class="container">
-<h2>Contact</h2>
-<p>Email: ${email}</p>
-<p>Telefon: ${phone}</p>
-<p>${address}</p>
-</div>
-</section>
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Email: ${email}</p>
+      <p>Telefon: ${phone}</p>
+      <p>${address}</p>
+    </div>
+  </section>
 
-<footer>
-&copy; ${new Date().getFullYear()} ${logo}
-</footer>
+  <footer>
+    &copy; ${new Date().getFullYear()} ${logo}
+  </footer>
 
 </body>
 </html>`;
 
-    const blob = new Blob([html],{type:"text/html"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "index.html";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(a.href);
+const blob = new Blob([html],{type:"text/html"});
+const a = document.createElement("a");
+a.href = URL.createObjectURL(blob);
+a.download = "index.html";
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(a.href);
 });
 
 const logoInput = document.getElementById("logo");
@@ -171,7 +171,7 @@ const aboutTextInput = document.getElementById("aboutText");
 const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 const addressInput = document.getElementById("address");
-</script>
+    </script>
 
-</body>
+  </body>
 </html>
