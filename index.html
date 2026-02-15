@@ -3,58 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generator pagină psihoterapeut</title>
+<title>Generator site pentru psihoterapeut</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #e9f0f7, #f7f9fb);
         margin: 0;
         padding: 20px;
     }
     h1 {
         text-align: center;
-        color: #2c3e50;
+        color: #1f2d3d;
+        margin-bottom: 30px;
     }
     form {
-        max-width: 600px;
+        max-width: 700px;
         margin: 0 auto;
         background: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
     label {
         display: block;
-        margin-top: 15px;
-        font-weight: bold;
+        margin-top: 18px;
+        font-weight: 600;
+        color: #34495e;
     }
     input, textarea {
         width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
+        padding: 12px;
+        margin-top: 6px;
+        border-radius: 8px;
+        border: 1px solid #dce3ea;
+        font-size: 15px;
         box-sizing: border-box;
+        transition: border 0.2s, box-shadow 0.2s;
+    }
+    input:focus, textarea:focus {
+        outline: none;
+        border: 1px solid #2c7be5;
+        box-shadow: 0 0 0 3px rgba(44,123,229,0.15);
     }
     button {
-        margin-top: 20px;
+        margin-top: 25px;
         width: 100%;
-        padding: 12px;
+        padding: 14px;
         font-size: 16px;
-        background: #2c7be5;
+        font-weight: 600;
+        background: linear-gradient(90deg, #2c7be5, #1a68d1);
         color: #fff;
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
         cursor: pointer;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
     button:hover {
-        background: #1a68d1;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
 </style>
 </head>
 <body>
 
-<h1>Generator site pentru psihoterapeut</h1>
+<h1>Generator profesional de site pentru psihoterapeut</h1>
 
 <form id="generatorForm">
     <label for="nume">Nume complet</label>
@@ -82,16 +94,29 @@
 </form>
 
 <script>
+function escapeHTML(str) {
+    return str.replace(/[&<>"']/g, function(tag) {
+        const chars = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return chars[tag] || tag;
+    });
+}
+
 document.getElementById("generatorForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const nume = document.getElementById("nume").value;
-    const titlu = document.getElementById("titlu").value;
-    const descriere = document.getElementById("descriere").value;
-    const specializari = document.getElementById("specializari").value;
-    const email = document.getElementById("email").value;
-    const telefon = document.getElementById("telefon").value;
-    const cabinet = document.getElementById("cabinet").value;
+    const nume = escapeHTML(document.getElementById("nume").value);
+    const titlu = escapeHTML(document.getElementById("titlu").value);
+    const descriere = escapeHTML(document.getElementById("descriere").value);
+    const specializari = escapeHTML(document.getElementById("specializari").value);
+    const email = escapeHTML(document.getElementById("email").value);
+    const telefon = escapeHTML(document.getElementById("telefon").value);
+    const cabinet = escapeHTML(document.getElementById("cabinet").value);
 
     const siteHTML = `<!DOCTYPE html>
 <html lang="ro">
@@ -101,31 +126,67 @@ document.getElementById("generatorForm").addEventListener("submit", function(e) 
 <title>${nume} – ${titlu}</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
         margin: 0;
-        background: #ffffff;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f8fafc;
         color: #2c3e50;
+        line-height: 1.6;
     }
     header {
-        background: #2c7be5;
+        background: linear-gradient(120deg, #2c7be5, #1a68d1);
         color: #ffffff;
-        padding: 30px 20px;
+        padding: 60px 20px;
         text-align: center;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 36px;
+    }
+    header p {
+        margin-top: 10px;
+        font-size: 18px;
+        opacity: 0.95;
     }
     section {
-        max-width: 800px;
-        margin: 40px auto;
+        max-width: 900px;
+        margin: 60px auto;
         padding: 0 20px;
     }
+    .card {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        margin-bottom: 30px;
+    }
     h2 {
-        border-bottom: 2px solid #2c7be5;
-        padding-bottom: 5px;
+        margin-top: 0;
+        color: #1f2d3d;
+        border-left: 5px solid #2c7be5;
+        padding-left: 10px;
+    }
+    a {
+        color: #2c7be5;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    a:hover {
+        text-decoration: underline;
     }
     footer {
-        background: #f4f6f8;
+        background: #eef2f7;
         text-align: center;
-        padding: 20px;
+        padding: 25px;
         font-size: 14px;
+        color: #6c7a89;
+    }
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 28px;
+        }
+        section {
+            margin: 40px auto;
+        }
     }
 </style>
 </head>
@@ -137,24 +198,26 @@ document.getElementById("generatorForm").addEventListener("submit", function(e) 
 </header>
 
 <section>
-    <h2>Despre mine</h2>
-    <p>${descriere}</p>
-</section>
+    <div class="card">
+        <h2>Despre mine</h2>
+        <p>${descriere}</p>
+    </div>
 
-<section>
-    <h2>Specializări</h2>
-    <p>${specializari || "Informații disponibile la cerere."}</p>
-</section>
+    <div class="card">
+        <h2>Specializări</h2>
+        <p>${specializari || "Informații disponibile la cerere."}</p>
+    </div>
 
-<section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:${email}">${email}</a></p>
-    <p>Telefon: ${telefon || "-"}</p>
-    <p>Adresă cabinet: ${cabinet || "-"}</p>
+    <div class="card">
+        <h2>Contact</h2>
+        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+        <p><strong>Telefon:</strong> ${telefon || "-"}</p>
+        <p><strong>Adresă cabinet:</strong> ${cabinet || "-"}</p>
+    </div>
 </section>
 
 <footer>
-    <p>&copy; ${new Date().getFullYear()} ${nume}. Toate drepturile rezervate.</p>
+    &copy; ${new Date().getFullYear()} ${nume}. Toate drepturile rezervate.
 </footer>
 
 </body>
