@@ -152,6 +152,17 @@
     </div>
 
     <script>
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
         document.getElementById('therapistForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -341,12 +352,6 @@
 
             alert('Pagina web a fost generată și descărcată cu succes!');
         });
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
     </script>
 </body>
 </html>
