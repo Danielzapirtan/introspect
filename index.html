@@ -84,6 +84,13 @@ button:hover{background:#3a6355}
       document.getElementById("genForm").addEventListener("submit",e=>{
         e.preventDefault();
 
+	const logoInput = document.getElementById("logo");
+	const heroTitleInput = document.getElementById("heroTitle");
+	const heroTextInput = document.getElementById("heroText");
+	const aboutTextInput = document.getElementById("aboutText");
+	const emailInput = document.getElementById("email");
+	const phoneInput = document.getElementById("phone");
+	const addressInput = document.getElementById("address");
         const logo = esc(logoInput.value);
         const heroTitle = esc(heroTitleInput.value);
         const heroText = esc(heroTextInput.value);
@@ -164,13 +171,6 @@ document.body.removeChild(a);
 URL.revokeObjectURL(a.href);
 });
 
-const logoInput = document.getElementById("logo");
-const heroTitleInput = document.getElementById("heroTitle");
-const heroTextInput = document.getElementById("heroText");
-const aboutTextInput = document.getElementById("aboutText");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
-const addressInput = document.getElementById("address");
     </script>
 
   </body>
