@@ -181,7 +181,7 @@
                 ? servicesArray.map(s => `<li>${escapeHtml(s.trim())}</li>`).join('\n                ')
                 : '<li>Consiliere psihologică</li>';
 
-            const websiteHTML = `<!DOCTYPE html>
+            const websiteHTML = escapeHtml(`<!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
@@ -338,7 +338,7 @@
         <p>&copy; ${new Date().getFullYear()} ${escapeHtml(name)}. Toate drepturile rezervate.</p>
     </footer>
 </body>
-</html>`;
+</html>`);
 
             const blob = new Blob([websiteHTML], { type: 'text/html' });
             const url = URL.createObjectURL(blob);
