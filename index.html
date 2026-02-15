@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator site psihoterapeut</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: linear-gradient(145deg, #f0f3f7 0%, #e1e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .card {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 2.5rem;
+            box-shadow: 0 30px 50px rgba(0, 20, 30, 0.2), inset 0 2px 4px rgba(255,255,255,0.8);
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #1e3c4f;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        h1 span {
+            background: #b6cdd6;
+            font-size: 1.8rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+            font-weight: 400;
+            color: #0a2a36;
+        }
+        .subtitlu {
+            font-size: 1.1rem;
+            color: #2b5e72;
+            margin-bottom: 2rem;
+            border-left: 4px solid #7fa9b9;
+            padding-left: 1.2rem;
+            font-style: italic;
+        }
+        .grid-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem 2rem;
+        }
+        .camp-mic {
+            grid-column: span 1;
+        }
+        .camp-mare {
+            grid-column: span 2;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #1f495b;
+            margin-bottom: 0.25rem;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: #ffffffd9;
+            border: 1px solid #b3c9d4;
+            border-radius: 40px;
+            font-size: 1rem;
+            transition: 0.2s;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.02);
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #3e8ca3;
+            box-shadow: 0 0 0 4px rgba(72, 149, 173, 0.2), inset 0 2px 4px #fff;
+            background: white;
+        }
+        textarea {
+            border-radius: 30px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        .dublu-buton {
+            grid-column: span 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .btn {
+            background: #fff2e0;
+            border: none;
+            padding: 1rem 2.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #124a5e;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -7px #305f71, 0 0 0 1px rgba(255,255,255,0.7) inset;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #caddf0;
+        }
+        .btn-generare {
+            background: #d7e9f2;
+            color: #063544;
+            flex: 2;
+        }
+        .btn-reset {
+            background: #f2e3d5;
+            color: #3b3f45;
+            flex: 1;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 20px -10px #1d4b5e, 0 0 0 1px white inset;
+            background: #f6faff;
+        }
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 8px -2px #1a3e4b;
+        }
+        .info-psiholog {
+            background: #eef5f9c9;
+            border-radius: 2rem;
+            padding: 1.5rem 1.8rem;
+            margin-top: 2.2rem;
+            border: 1px solid white;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .previzualizare-nume {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #003952;
+        }
+        .previzualizare-nume strong {
+            background: #9bc6d8;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            margin-left: 0.8rem;
+        }
+        .dowload-hint {
+            color: #1c5f79;
+        }
+        .separator {
+            border-top: 2px dashed #9bb7c7;
+            margin: 1.5rem 0 0.5rem;
+            opacity: 0.5;
+        }
+        @media (max-width: 700px) {
+            .grid-form { grid-template-columns: 1fr; }
+            .camp-mare { grid-column: span 1; }
+            .dublu-buton { flex-direction: column; }
+            .btn { width: 100; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>
+            🌿 cabinetul tău online
+            <span>β</span>
+        </h1>
+        <div class="subtitlu">
+            completează datele și generează pagina ta profesională
+        </div>
+
+        <!-- formularul propriu-zis -->
+        <form id="formPsihoterapeut">
+            <div class="grid-form">
+                <!-- rând 1: nume + prenume -->
+                <div class="camp-mic">
+                    <label>nume</label>
+                    <input type="text" id="nume" placeholder="de ex. Ionescu" autocomplete="off">
+                </div>
+                <div class="camp-mic">
+                    <label>prenume</label>
+                    <input type="text" id="prenume" placeholder="Maria">
+                </div>
+
+                <!-- titlu / specializare -->
+                <div class="camp-mic">
+                    <label>titlu profesional</label>
+                    <input type="text" id="titlu" value="psihoterapeut" placeholder="psihoterapeut / psiholog">
+                </div>
+                <div class="camp-mic">
+                    <label>anii de experiență</label>
+                    <input type="number" id="experienta" min="0" max="50" value="8">
+                </div>
+
+                <!-- abordare / tip terapie (mare) -->
+                <div class="camp-mare">
+                    <label>abordare terapeutică (descriere scurtă)</label>
+                    <input type="text" id="abordare" value="terapie integrativă, centrată pe emoție">
+                </div>
+
+                <!-- localitate & contact -->
+                <div class="camp-mic">
+                    <label>localitate</label>
+                    <input type="text" id="localitate" value="Cluj-Napoca">
+                </div>
+                <div class="camp-mic">
+                    <label>email consultații</label>
+                    <input type="email" id="email" value="contact@example.com">
+                </div>
+
+                <!-- telefon (opțional) -->
+                <div class="camp-mic">
+                    <label>telefon (opțional)</label>
+                    <input type="text" id="telefon" placeholder="0755 123 456">
+                </div>
+                <div class="camp-mic">
+                    <label>preț ședință (RON)</label>
+                    <input type="text" id="pret" value="200 lei">
+                </div>
+
+                <!-- zone checkbox: terapie online/offline -->
+                <div class="camp-mare" style="display: flex; gap: 2rem; align-items: center; padding: 0.5rem 0;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; text-transform: none;">
+                        <input type="checkbox" id="online" checked style="width: 20px; height: 20px;"> ședințe online
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 0.5rem; text-transform: none;">
+                        <input type="checkbox" id="offline" checked style="width: 20px; height: 20px;"> ședințe în cabinet
+                    </label>
+                </div>
+
+                <!-- o descriere mai lungă (prezentare) -->
+                <div class="camp-mare">
+                    <label>prezentare / descriere (apare pe site)</label>
+                    <textarea id="descriere" rows="3">Ofer un spațiu sigur și empatic, adaptat nevoilor tale. Lucrez cu adulți și adolescenți, într-o manieră colaborativă.</textarea>
+                </div>
+
+                <!-- butoanele de acțiune -->
+                <div class="dublu-buton">
+                    <button type="button" class="btn btn-generare" id="genereazaBtn">
+                        ⬇️ generează și descarcă site-ul
+                    </button>
+                    <button type="reset" class="btn btn-reset" id="resetBtn">
+                        ↻ resetează câmpuri
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="separator"></div>
+
+        <!-- o mini-previzualizare dinamică (doar de好看) -->
+        <div class="info-psiholog">
+            <div class="previzualizare-nume">
+                🧑‍⚕️ psihoterapeut 
+                <strong id="prevNume">Ionescu Maria</strong>
+            </div>
+            <div class="dowload-hint">
+                ⚡ după descărcare vei găsi fișierul <code>psihoterapeut.html</code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // elemente frecvente
+            const inputNume = document.getElementById('nume');
+            const inputPrenume = document.getElementById('prenume');
+            const inputTitlu = document.getElementById('titlu');
+            const inputExperienta = document.getElementById('experienta');
+            const inputAbordare = document.getElementById('abordare');
+            const inputLocalitate = document.getElementById('localitate');
+            const inputEmail = document.getElementById('email');
+            const inputTel = document.getElementById('telefon');
+            const inputPret = document.getElementById('pret');
+            const chkOnline = document.getElementById('online');
+            const chkOffline = document.getElementById('offline');
+            const textDescriere = document.getElementById('descriere');
+            const prevNumeSpan = document.getElementById('prevNume');
+
+            // funcţie ajutătoare pentru actualizarea previzualizării
+            function actualizeazaPrevizualizare() {
+                let nume = inputNume.value.trim() || 'Ionescu';
+                let prenume = inputPrenume.value.trim() || 'Maria';
+                prevNumeSpan.innerText = nume + ' ' + prenume;
+            }
+
+            // evenimente pentru actualizare
+            [inputNume, inputPrenume].forEach(el => el.addEventListener('input', actualizeazaPrevizualizare));
+            actualizeazaPrevizualizare(); // la încărcare
+
+            // FUNCȚIA CARE GENEREAZĂ HTML-UL PAGINII PERSONALE (index.html)
+            function genereazaHtmlPersonal() {
+                // citim toate valorile din formular (cu fallback-uri)
+                const nume = inputNume.value.trim() || 'Ionescu';
+                const prenume = inputPrenume.value.trim() || 'Maria';
+                const titlu = inputTitlu.value.trim() || 'psihoterapeut';
+                const experienta = inputExperienta.value.trim() || '8';
+                const abordare = inputAbordare.value.trim() || 'terapie integrativă';
+                const localitate = inputLocalitate.value.trim() || 'Cluj-Napoca';
+                const email = inputEmail.value.trim() || 'contact@example.com';
+                const telefon = inputTel.value.trim() || '';
+                const pret = inputPret.value.trim() || '200 lei';
+                const online = chkOnline.checked;
+                const offline = chkOffline.checked;
+                const descriere = textDescriere.value.trim() || 'Ofer un spațiu sigur și empatic.';
+
+                // construim lista formatelor (online/offline)
+                let tipSedinte = [];
+                if (online) tipSedinte.push('🖥️ şedinţe online');
+                if (offline) tipSedinte.push('🏢 şedinţe în cabinet');
+                if (tipSedinte.length === 0) tipSedinte = ['🌐 formă de lucru flexibilă'];
+
+                // anul curent pentru footer
+                const anCurent = new Date().getFullYear();
+
+                // HTML final – structură prietenoasă, modernă, cu datele inserate
+                return `<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${prenume} ${nume} – psihoterapie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background: #f4f8fb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+        .pagina-psiholog {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 3rem;
+            box-shadow: 0 30px 45px -20px #1f3f4d, 0 10px 20px -5px rgba(0,40,50,0.1);
+            border: 1px solid rgba(255,255,255,0.7);
+            overflow: hidden;
+        }
+        .header-card {
+            background: linear-gradient(115deg, #d6e9f2 0%, #c2deec 100%);
+            padding: 2rem 2.5rem 1.5rem;
+            border-bottom: 3px solid white;
+        }
+        .header-card h1 {
+            font-size: 2.8rem;
+            font-weight: 350;
+            color: #0c3f51;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+        .header-card h1 small {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #2b657b;
+            display: block;
+            margin-top: 0.3rem;
+        }
+        .badge-ani {
+            background: white;
+            padding: 0.3rem 1.5rem;
+            border-radius: 60px;
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-weight: 500;
+            color: #135e78;
+            border: 1px solid #abd4e6;
+            box-shadow: 0 3px 7px rgba(0,0,0,0.05);
+        }
+        .grid-continut {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2.5rem;
+        }
+        .coloana-stanga, .coloana-dreapta {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .sectiune {
+            background: #ffffffc9;
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 14px #d2e2eb;
+            border: 1px solid white;
+        }
+        .sectiune h2 {
+            font-size: 1.6rem;
+            font-weight: 350;
+            color: #184b5c;
+            border-bottom: 2px dotted #9fc9db;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .sectiune p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #1e4b5a;
+            margin-bottom: 1rem;
+        }
+        .date-contact {
+            list-style: none;
+            background: #e7f2f9;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+        }
+        .date-contact li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #b8d6e7;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.15rem;
+            color: #094c61;
+        }
+        .date-contact li:last-child {
+            border-bottom: none;
+        }
+        .pret-badge {
+            background: #fff1d2;
+            border-radius: 40px;
+            padding: 0.6rem 2rem;
+            font-size: 1.8rem;
+            font-weight: 300;
+            display: inline-block;
+            color: #1b5f74;
+            border: 1px solid #f7cfa2;
+        }
+        .tip-terapie {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .tip-terapie span {
+            background: #aacedf;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            text-shadow: 0 1px 2px #124c63;
+        }
+        footer {
+            background: #cfdee9;
+            padding: 1.2rem 2.5rem;
+            text-align: center;
+            color: #1b4b5c;
+            font-size: 1rem;
+            border-top: 1px solid white;
+        }
+        @media (max-width:650px){
+            .grid-continut{ grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="pagina-psiholog">
+        <div class="header-card">
+            <h1>
+                ${prenume} ${nume}
+                <small>${titlu}</small>
+            </h1>
+            <div class="badge-ani">🧠 ${experienta} ani experiență • ${localitate}</div>
+        </div>
+
+        <div class="grid-continut">
+            <!-- coloana stângă: descriere și abordare -->
+            <div class="coloana-stanga">
+                <div class="sectiune">
+                    <h2>📋 Prezentare</h2>
+                    <p>${descriere}</p>
+                </div>
+                <div class="sectiune">
+                    <h2>🌱 Abordare terapeutică</h2>
+                    <p><strong>${abordare}</strong></p>
+                    <div class="tip-terapie">
+                        ${tipSedinte.map(t => `<span>${t}</span>`).join(' ')}
+                    </div>
+                </div>
+            </div>
+
+            <!-- coloana dreaptă: contact și program -->
+            <div class="coloana-dreapta">
+                <div class="sectiune">
+                    <h2>📞 Contact & programări</h2>
+                    <ul class="date-contact">
+                        <li>✉️ <strong>email:</strong> ${email}</li>
+                        ${telefon ? `<li>📞 <strong>telefon:</strong> ${telefon}</li>` : ''}
+                        <li>📍 <strong>cabinet:</strong> ${localitate}</li>
+                        <li>💰 <strong>tarif şedinţă:</strong> ${pret}</li>
+                    </ul>
+                </div>
+                <div class="sectiune" style="text-align: center;">
+                    <h2>🕊️ Program</h2>
+                    <p style="font-size: 1.2rem; margin-bottom:0;">disponibilitate în funcție de programări</p>
+                    <div class="pret-badge" style="margin-top:1rem;">primeşte sprijinul de care ai nevoie</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            🌿 ${prenume} ${nume} – psihoterapeut • toate drepturile rezervate © ${anCurent}
+        </footer>
+    </div>
+    <!-- generator de site pentru psihoterapeuți -->
+</body>
+</html>`;
+            }
+
+            // BUTON GENERARE + DOWNLOAD
+            document.getElementById('genereazaBtn').addEventListener('click', function() {
+                // 1. generăm conținutul HTML personalizat
+                const htmlContent = genereazaHtmlPersonal();
+                
+                // 2. creăm un blob și link de descărcare
+                const blob = new Blob([htmlContent], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'index.html';  // fișierul se numește index.html (exact cerința)
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                // (opțional) un mic feedback
+                alert('✅ Fișierul index.html a fost generat și descărcat!');
+            });
+
+            // BUTON RESET – șterge valorile și readuce unele implicite
+            document.getElementById('resetBtn').addEventListener('click', function(e) {
+                e.preventDefault();  // prevenim submit real
+                // resetăm toate câmpurile la placeholder / valori implicite prietenoase
+                inputNume.value = '';
+                inputPrenume.value = '';
+                inputTitlu.value = 'psihoterapeut';
+                inputExperienta.value = '8';
+                inputAbordare.value = 'terapie integrativă, centrată pe emoție';
+                inputLocalitate.value = 'Cluj-Napoca';
+                inputEmail.value = 'contact@example.com';
+                inputTel.value = '';
+                inputPret.value = '200 lei';
+                chkOnline.checked = true;
+                chkOffline.checked = true;
+                textDescriere.value = 'Ofer un spațiu sigur și empatic, adaptat nevoilor tale. Lucrez cu adulți și adolescenți, într-o manieră colaborativă.';
+                actualizeazaPrevizualizare();
+            });
+        })();
+    </script>
+</body>
+</html>
