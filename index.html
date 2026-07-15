@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Generator site psihoterapeut · publicare GitHub Pages</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4efe7;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem 1rem;
+    }
+
+    .generator-container {
+      max-width: 950px;
+      width: 100%;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.05);
+      padding: 2.5rem 2.2rem;
+      transition: all 0.2s;
+    }
+
+    h1 {
+      font-weight: 500;
+      font-size: 2.1rem;
+      color: #4a4a3f;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.3px;
+    }
+
+    .subtitle {
+      color: #7e7a6b;
+      margin-bottom: 2.2rem;
+      font-size: 1rem;
+      border-left: 4px solid #b7aa81;
+      padding-left: 1.2rem;
+      font-weight: 350;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    fieldset {
+      border: 1px solid #e2dcd0;
+      border-radius: 1.8rem;
+      padding: 1.6rem 1.8rem;
+      background: #fefdf9;
+    }
+
+    legend {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #5e5b4b;
+      background: white;
+      padding: 0 1rem;
+      margin-left: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.4rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 550;
+      color: #5c5b4f;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    input, textarea, select {
+      padding: 0.8rem 1rem;
+      border: 1px solid #d8d2c4;
+      border-radius: 1.2rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: white;
+      transition: 0.2s ease;
+      outline: none;
+      color: #2e2e29;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #b3a68b;
+      box-shadow: 0 0 0 3px rgba(183, 170, 129, 0.25);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 85px;
+    }
+
+    .color-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    input[type="color"] {
+      width: 60px;
+      height: 45px;
+      padding: 0.2rem;
+      border-radius: 1rem;
+      border: 1px solid #cfc7b6;
+      background: white;
+      cursor: pointer;
+    }
+
+    .inline-hint {
+      font-size: 0.8rem;
+      color: #8b8876;
+      margin-left: 0.25rem;
+    }
+
+    .preview-btn, .download-btn {
+      background: #f0ebe0;
+      border: 1px solid #cec6b2;
+      padding: 0.8rem 1.8rem;
+      border-radius: 2.5rem;
+      font-weight: 550;
+      color: #4e4b3a;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+      background: #faf7f2;
+    }
+
+    .preview-btn:hover, .download-btn:hover {
+      background: #e7dfcd;
+      border-color: #b3a382;
+      color: #2d2b20;
+    }
+
+    .action-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      gap: 1rem;
+    }
+
+    .download-btn {
+      background: #d9cfb0;
+      border-color: #b7a87e;
+      color: #2f2d21;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+    }
+
+    .download-btn:hover {
+      background: #cdc19b;
+    }
+
+    hr {
+      border: 0.5px solid #e3dcd0;
+      margin: 0.8rem 0 1.2rem;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #78745e;
+      background: #fcfaf5;
+      padding: 0.7rem 1.2rem;
+      border-radius: 2rem;
+      display: inline-block;
+    }
+
+    #livePreviewContainer {
+      margin-top: 1.6rem;
+      border: 1px dashed #cbc0a5;
+      border-radius: 1.8rem;
+      padding: 1.2rem;
+      background: #fdfdf9;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+
+    .preview-frame {
+      border: none;
+      width: 100%;
+      height: 240px;
+      border-radius: 1rem;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+<div class="generator-container">
+  <h1>🌿 Generator site personal</h1>
+  <div class="subtitle">Completează datele și stilul dorit – vei primi un fișier <strong>index.html</strong> gata de publicat pe GitHub Pages</div>
+
+  <form id="generatorForm">
+    <!-- DATE PERSONALE + PROFESIONALE -->
+    <fieldset>
+      <legend>🧠 Identitate profesională</legend>
+      <div class="grid-2col">
+        <div class="form-group">
+          <label>👤 Nume complet <span style="color:#9c8e6b;">*</span></label>
+          <input type="text" id="fullName" placeholder="ex: Dr. Maria Ionescu" value="Dr. Ana-Maria Popescu" required>
+        </div>
+        <div class="form-group">
+          <label>🎓 Titlu / Specializare</label>
+          <input type="text" id="title" placeholder="Psihoterapeut cognitiv-comportamental" value="Psihoterapeut integrativ & consilier">
+        </div>
+        <div class="form-group">
+          <label>📧 Email</label>
+          <input type="email" id="email" placeholder="contact@exemplu.ro" value="ana.popescu@terapie.ro">
+        </div>
+        <div class="form-group">
+          <label>📞 Telefon</label>
+          <input type="text" id="phone" placeholder="07xx xxx xxx" value="+40 721 123 456">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top: 1.2rem;">
+        <label>📍 Adresă cabinet / Locație</label>
+        <input type="text" id="address" placeholder="Strada, oraș" value="Str. Liniștii 22, București, Sector 1">
+      </div>
+      <div class="form-group">
+        <label>📝 Descriere scurtă (apare pe site)</label>
+        <textarea id="bio" placeholder="Câteva cuvinte despre abordarea ta...">Ofer un spațiu sigur și confidențial pentru explorare personală. Mă specializez în gestionarea anxietății, depresiei și dezvoltare personală.</textarea>
+      </div>
+    </fieldset>
+
+    <!-- STILIZARE & CULORI -->
+    <fieldset>
+      <legend>🎨 Aspect & culori</legend>
+      <div class="grid-2col">
+        <div class="form-group">
+          <label>🎨 Culoare principală (fundal header)</label>
+          <div class="color-row">
+            <input type="color" id="primaryColor" value="#e7dfd0">
+            <span class="inline-hint">folosit pentru header, accente</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>🖋️ Culoare text principal</label>
+          <div class="color-row">
+            <input type="color" id="textColor" value="#3b3a32">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>✨ Culoare secundară (butoane)</label>
+          <div class="color-row">
+            <input type="color" id="accentColor" value="#b7aa81">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>📄 Fundal pagină</label>
+          <div class="color-row">
+            <input type="color" id="bgColor" value="#fcfaf6">
+          </div>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top: 1rem;">
+        <label>🔤 Font preferat (nume Google Font sau system)</label>
+        <select id="fontFamily">
+          <option value="'Segoe UI', Roboto, system-ui, sans-serif">Modern curat (Segoe UI)</option>
+          <option value="'Lora', 'Times New Roman', serif" selected>Serif elegant (Lora)</option>
+          <option value="'Nunito', 'Helvetica Neue', sans-serif">Rotunjit prietenos (Nunito)</option>
+          <option value="'Inter', system-ui, sans-serif">Minimalist (Inter)</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <!-- SECȚIUNI SUPLIMENTARE -->
+    <fieldset>
+      <legend>📋 Conținut extra</legend>
+      <div class="grid-2col">
+        <div class="form-group">
+          <label>🗓️ Text invitație programare</label>
+          <input type="text" id="ctaText" placeholder="Programează o ședință" value="Programează o primă discuție gratuită">
+        </div>
+        <div class="form-group">
+          <label>🔗 Link programare (Calendly etc.)</label>
+          <input type="url" id="bookingLink" placeholder="https://calendly.com/..." value="https://calendly.com/ana-popescu/15min">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top: 0.8rem;">
+        <label>🖼️ URL fotografie profesională (opțional)</label>
+        <input type="url" id="photoUrl" placeholder="https://exemplu.ro/poza.jpg" value="https://images.unsplash.com/photo-1590650151155-3b62c5a0c7c1?w=400&h=400&fit=crop&crop=face">
+      </div>
+    </fieldset>
+
+    <div class="action-bar">
+      <button type="button" class="preview-btn" id="previewBtn">🔍 Previzualizare live</button>
+      <button type="button" class="download-btn" id="downloadBtn">⬇️ Generează & descarcă index.html</button>
+    </div>
+    <div class="note">⚡ După descărcare, plasează fișierul în repository-ul GitHub Pages.</div>
+  </form>
+
+  <!-- Previzualizare rapidă -->
+  <div id="livePreviewContainer">
+    <iframe id="previewFrame" class="preview-frame" title="Previzualizare site" sandbox="allow-same-origin"></iframe>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Elemente formular
+    const fullNameInp = document.getElementById('fullName');
+    const titleInp = document.getElementById('title');
+    const emailInp = document.getElementById('email');
+    const phoneInp = document.getElementById('phone');
+    const addressInp = document.getElementById('address');
+    const bioInp = document.getElementById('bio');
+    const primaryColorInp = document.getElementById('primaryColor');
+    const textColorInp = document.getElementById('textColor');
+    const accentColorInp = document.getElementById('accentColor');
+    const bgColorInp = document.getElementById('bgColor');
+    const fontFamilySelect = document.getElementById('fontFamily');
+    const ctaTextInp = document.getElementById('ctaText');
+    const bookingLinkInp = document.getElementById('bookingLink');
+    const photoUrlInp = document.getElementById('photoUrl');
+
+    const previewFrame = document.getElementById('previewFrame');
+
+    // Construiește HTML-ul complet pe baza datelor din formular
+    function generateFullHTML() {
+      const name = fullNameInp.value.trim() || 'Nume Psihoterapeut';
+      const title = titleInp.value.trim() || 'Psihoterapeut';
+      const email = emailInp.value.trim() || 'email@exemplu.ro';
+      const phone = phoneInp.value.trim() || '07xx xxx xxx';
+      const address = addressInp.value.trim() || 'Adresa cabinet';
+      const bio = bioInp.value.trim() || 'Profesionist în sănătate mintală.';
+      const primary = primaryColorInp.value || '#e7dfd0';
+      const textCol = textColorInp.value || '#3b3a32';
+      const accent = accentColorInp.value || '#b7aa81';
+      const bg = bgColorInp.value || '#fcfaf6';
+      const fontFamily = fontFamilySelect.value || "'Lora', serif";
+      const cta = ctaTextInp.value.trim() || 'Programează o ședință';
+      const booking = bookingLinkInp.value.trim() || '#contact';
+      const photo = photoUrlInp.value.trim() || '';
+
+      // Construim HTML-ul final (real index.html pentru publicare)
+      return `<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHTML(name)} – ${escapeHTML(title)}</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: ${fontFamily};
+      background-color: ${bg};
+      color: ${textCol};
+      line-height: 1.6;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      max-width: 780px;
+      width: 100%;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .header {
+      background: ${primary};
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .profile-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+      background: #ddd;
+    }
+    .header-text h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: ${textCol};
+      letter-spacing: -0.3px;
+    }
+    .header-text .subtitle {
+      font-size: 1.2rem;
+      color: ${adjustColor(textCol, 0.7)};
+      margin-top: 0.3rem;
+    }
+    .content {
+      padding: 2.2rem 2rem;
+    }
+    .bio {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: ${textCol};
+    }
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      background: ${bg};
+      padding: 1.4rem 1.8rem;
+      border-radius: 1.5rem;
+      margin: 1.8rem 0;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .cta-button {
+      display: inline-block;
+      background: ${accent};
+      color: ${isLight(accent) ? '#2e2c24' : '#fff'};
+      padding: 0.9rem 2.5rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.8rem;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+    }
+    .cta-button:hover {
+      filter: brightness(0.96);
+      transform: translateY(-1px);
+    }
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: ${adjustColor(textCol, 0.6)};
+    }
+    @media (max-width: 550px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      ${photo ? `<img src="${escapeHTML(photo)}" alt="Poză ${escapeHTML(name)}" class="profile-img" onerror="this.style.display='none'">` : ''}
+      <div class="header-text">
+        <h1>${escapeHTML(name)}</h1>
+        <div class="subtitle">${escapeHTML(title)}</div>
+      </div>
+    </div>
+    <div class="content">
+      <p class="bio">${escapeHTML(bio)}</p>
+      <div class="contact-info">
+        ${email ? `<div class="contact-item">📧 <span>${escapeHTML(email)}</span></div>` : ''}
+        ${phone ? `<div class="contact-item">📞 <span>${escapeHTML(phone)}</span></div>` : ''}
+        ${address ? `<div class="contact-item">📍 <span>${escapeHTML(address)}</span></div>` : ''}
+      </div>
+      <a href="${escapeHTML(booking)}" class="cta-button" target="_blank" rel="noopener">${escapeHTML(cta)}</a>
+    </div>
+  </div>
+  <footer>© ${new Date().getFullYear()} ${escapeHTML(name)} · Cabinet individual de psihoterapie</footer>
+</body>
+</html>`;
+    }
+
+    // Funcții utilitare
+    function escapeHTML(str) {
+      return String(str).replace(/[&<>"]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
+        return m;
+      });
+    }
+
+    function adjustColor(hex, factor) {
+      // simplu: adaugă transparență sau amestec cu alb; returnează rgba
+      hex = hex.replace('#','');
+      if (hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+      const r = parseInt(hex.substring(0,2),16);
+      const g = parseInt(hex.substring(2,4),16);
+      const b = parseInt(hex.substring(4,6),16);
+      return `rgba(${r},${g},${b},${factor})`;
+    }
+
+    function isLight(hex) {
+      hex = hex.replace('#','');
+      if (hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+      const r = parseInt(hex.substring(0,2),16);
+      const g = parseInt(hex.substring(2,4),16);
+      const b = parseInt(hex.substring(4,6),16);
+      const luminance = (0.299*r + 0.587*g + 0.114*b) / 255;
+      return luminance > 0.7;
+    }
+
+    // Actualizează iframe-ul cu previzualizare
+    function updatePreview() {
+      const htmlContent = generateFullHTML();
+      const blob = new Blob([htmlContent], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      previewFrame.src = url;
+    }
+
+    // Descărcare fișier index.html
+    function downloadIndex() {
+      const htmlContent = generateFullHTML();
+      const blob = new Blob([htmlContent], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Evenimente
+    document.getElementById('previewBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      updatePreview();
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      downloadIndex();
+    });
+
+    // Actualizare automată la modificări (opțional, dar previzualizare manuală principală)
+    // Pentru comoditate, actualizăm preview la schimbare după un scurt debounce? Mai bine manual.
+    // Dar putem face update automat când se apasă preview. Inițial generăm un preview default.
+    window.addEventListener('load', () => {
+      // mic delay pentru a fi siguri că fonturile sunt setate
+      setTimeout(() => {
+        updatePreview();
+      }, 100);
+    });
+
+    // Reîmprospătare preview când se schimbă culori (pentru experiență fluidă)
+    const inputsToWatch = [primaryColorInp, textColorInp, accentColorInp, bgColorInp, fontFamilySelect, 
+      fullNameInp, titleInp, bioInp, emailInp, phoneInp, addressInp, ctaTextInp, bookingLinkInp, photoUrlInp];
+    
+    inputsToWatch.forEach(inp => {
+      inp.addEventListener('input', function() {
+        // debounce simplu
+        clearTimeout(window._previewTimeout);
+        window._previewTimeout = setTimeout(() => {
+          updatePreview();
+        }, 350);
+      });
+      inp.addEventListener('change', function() {
+        clearTimeout(window._previewTimeout);
+        updatePreview();
+      });
+    });
+
+  })();
+</script>
+</body>
+</html>
